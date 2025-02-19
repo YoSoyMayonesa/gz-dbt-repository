@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: contains the date, orders, products, quantity, and revenue
+        columns:
+          - name: date_date
+            description: date of the orders
+          - name: orders_id
+            description: unique identifier of each order
+          - name: pdt_id
+            description: product identifier
+          - name: revenue
+            description: gain per order
+          - name: quantity
+            description: quantity per order
+
+      - name: product
+        identifier: raw_gz_product
+        description: price per product
+        columns:
+          - name: products_id
+            description: unique identifier of product
+            tests:
+              - not_null
+              - unique
+              
+          - name: purchSE_PRICE
+            description: price of each product
+            tests:
+              - not_null
+
+      - name: ship
+        identifier: raw_gz_ship
+        description: contains the cost associated with each order
+        columns:
+          - name: orders_id
+            description: identifier of the order shipped
+            tests:
+              - not_null
+              - unique
+
+          - name: shipping_fee
+            description: cost associated to shipping
+          - name: logCost
+            description: cost associated with logistics
+          - name: ship_cost
+            description: Cost of shipping per order
