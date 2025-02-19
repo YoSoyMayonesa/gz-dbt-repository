@@ -1,4 +1,4 @@
- {{ config(materialized='table') }}
+ 
 
 SELECT
 order_date as date_date,
